@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder indoor choking-hazard scene</title>
+  <desc id="desc">A simple living room illustration with a toddler near a small round object.</desc>
+  <rect width="1400" height="900" fill="#f6f1e8"/>
+  <rect x="0" y="525" width="1400" height="375" fill="#d8eee6"/>
+  <rect x="120" y="290" width="520" height="165" rx="30" fill="#9ab7c7"/>
+  <rect x="165" y="225" width="150" height="105" rx="24" fill="#c8ddd6"/>
+  <rect x="345" y="225" width="150" height="105" rx="24" fill="#e3c7b6"/>
+  <rect x="705" y="375" width="380" height="62" rx="18" fill="#b98f68"/>
+  <rect x="750" y="430" width="26" height="125" rx="13" fill="#7b5f46"/>
+  <rect x="1012" y="430" width="26" height="125" rx="13" fill="#7b5f46"/>
+  <ellipse cx="735" cy="700" rx="360" ry="125" fill="#f4d7a1"/>
+  <g transform="translate(590 430)">
+    <circle cx="145" cy="72" r="66" fill="#f0c7a8"/>
+    <path d="M89 68 C107 13 184 13 202 68 C166 55 126 55 89 68Z" fill="#5d4438"/>
+    <circle cx="122" cy="75" r="6" fill="#3a302b"/>
+    <circle cx="168" cy="75" r="6" fill="#3a302b"/>
+    <path d="M130 103 C143 114 157 114 170 103" stroke="#8b5e50" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <rect x="83" y="137" width="125" height="145" rx="48" fill="#86b6ef"/>
+    <path d="M96 164 C45 186 39 244 82 272" stroke="#f0c7a8" stroke-width="30" fill="none" stroke-linecap="round"/>
+    <path d="M194 164 C245 186 251 244 208 272" stroke="#f0c7a8" stroke-width="30" fill="none" stroke-linecap="round"/>
+    <path d="M115 278 C80 326 52 352 22 365" stroke="#f0c7a8" stroke-width="33" fill="none" stroke-linecap="round"/>
+    <path d="M176 278 C211 326 239 352 269 365" stroke="#f0c7a8" stroke-width="33" fill="none" stroke-linecap="round"/>
+  </g>
+  <circle cx="925" cy="690" r="27" fill="#d0a23e" stroke="#8a6a22" stroke-width="6"/>
+  <circle cx="925" cy="690" r="13" fill="#e8c66f"/>
+  <path d="M864 687 C882 666 901 657 923 659" stroke="#334155" stroke-width="4" fill="none" stroke-dasharray="9 12" opacity="0.55"/>
+  <rect x="928" y="610" width="165" height="46" rx="23" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="1011" y="640" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#334155">small object</text>
+</svg>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Object-Centric Risk Demo</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">LLM-assisted risk reasoning</p>
+          <h1>Object-Centric Risk Demo</h1>
+        </div>
+        <label class="model-picker" for="modelSelect">
+          <span>Model</span>
+          <select id="modelSelect">
+            <option value="gpt-5.5">GPT-5.5</option>
+            <option value="gpt-5.4">GPT-5.4</option>
+            <option value="gpt-5.4-mini">GPT-5.4 mini</option>
+            <option value="gpt-5.4-nano" selected>GPT-5.4 nano</option>
+            <option value="gpt-5-nano">GPT-5 nano</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="api-key-panel">
+        <label for="apiKey">OpenAI API key</label>
+        <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" data-1p-ignore="true" />
+      </section>
+
+      <section class="diagram-panel">
+        <img src="assets/pipeline-v2.svg" alt="Object-centric risk analysis pipeline" />
+      </section>
+
+      <section class="step-strip" aria-label="Workflow steps">
+        <span id="stepOnePill" class="step-pill active">1. Input</span>
+        <span id="stepTwoPill" class="step-pill">2. Extract</span>
+        <span id="stepThreePill" class="step-pill">3. Group</span>
+        <span id="stepFourPill" class="step-pill">4. Score</span>
+      </section>
+
+      <section id="runningIndicator" class="running-banner hidden" hidden>running...</section>
+
+      <section id="inputStage" class="workspace-grid">
+        <article class="panel controls-panel">
+          <div class="panel-header">
+            <h2>Risk Input</h2>
+            <button id="analyzeBtn" class="primary-button" type="button">Analyze</button>
+          </div>
+          <label class="field-label" for="riskDescription">Risk description</label>
+          <textarea id="riskDescription" rows="3">be aware of choking hazard</textarea>
+
+          <div id="objectCountRow" class="slider-row">
+            <label for="objectCount">Objects to extract</label>
+            <input id="objectCount" type="range" min="2" max="20" value="10" />
+            <output id="objectCountValue">10</output>
+          </div>
+
+          <div id="fastCandidatesRow" class="fast-candidates hidden" hidden>
+            <label class="field-label" for="fastObjectCandidates">Candidate objects</label>
+            <textarea id="fastObjectCandidates" rows="3">baby, coin, sofa, table, TV</textarea>
+          </div>
+
+          <div class="option-grid">
+            <label class="switch-row" for="fastMode">
+              <span>
+                <strong>Fast version</strong>
+                <small>Names and scores only</small>
+              </span>
+              <span class="switch-control">
+                <input id="fastMode" type="checkbox" />
+                <span class="switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+
+            <label class="switch-row" for="showFinalImage">
+              <span>
+                <strong>Show final image</strong>
+                <small>Add the top risk result</small>
+              </span>
+              <span class="switch-control">
+                <input id="showFinalImage" type="checkbox" checked />
+                <span class="switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </div>
+
+          <div id="thresholdRow" class="slider-row">
+            <label for="riskThreshold">Risk threshold</label>
+            <input id="riskThreshold" type="range" min="0" max="1" step="0.05" value="0.5" />
+            <output id="riskThresholdValue">0.50</output>
+          </div>
+
+          <div id="status" class="status">Ready for analysis.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Scene Image</h2>
+          </div>
+          <label class="upload-zone" for="imageInput">
+            <img id="previewImage" src="assets/baby.png" alt="Baby near a small coin in a living room" />
+            <span>Upload Image</span>
+          </label>
+          <input id="imageInput" type="file" accept="image/*" />
+          <p class="image-note">The selected image is previewed here before analysis.</p>
+        </article>
+      </section>
+
+      <section id="analysisStage" class="results-grid hidden" hidden>
+        <article id="extractPanel" class="panel hidden" hidden>
+          <div class="panel-header">
+            <h2>Extracted Objects</h2>
+            <button id="backBtn" class="ghost-button" type="button">Back</button>
+          </div>
+          <div id="objectsView" class="object-list"></div>
+        </article>
+
+        <article id="groupPanel" class="panel hidden" hidden>
+          <h2>Object Groups</h2>
+          <div class="group-grid">
+            <section class="group-column victim-group">
+              <h3>Victims</h3>
+              <div id="victimsView" class="object-list"></div>
+            </section>
+            <section class="group-column object-group">
+              <h3>Objects</h3>
+              <div id="riskObjectsView" class="object-list"></div>
+            </section>
+          </div>
+        </article>
+
+        <article id="riskPanel" class="panel risk-panel hidden" hidden>
+          <div class="panel-header">
+            <h2>Victim-Object Risk Scores</h2>
+            <div id="overallScore" class="overall-score">Overall risk: 0%</div>
+          </div>
+          <div id="scoresView" class="score-grid"></div>
+        </article>
+
+        <article id="finalImagePanel" class="panel final-image-panel hidden" hidden>
+          <h2>Final Image</h2>
+          <img id="annotatedImage" alt="Scene image with top risk summary" />
+        </article>
+      </section>
+    </main>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>
