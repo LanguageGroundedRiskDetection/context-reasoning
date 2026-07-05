@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Risk Banner Demo</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">LLM-assisted video risk reasoning</p>
+          <h1>Video Risk Banner Demo</h1>
+        </div>
+        <div class="topbar-actions">
+          <a class="page-link" href="index.html">Image version</a>
+          <label class="model-picker" for="modelSelect">
+            <span>Model</span>
+            <select id="modelSelect">
+              <option value="gpt-5.5">GPT-5.5</option>
+              <option value="gpt-5.4">GPT-5.4</option>
+              <option value="gpt-5.4-mini">GPT-5.4 mini</option>
+              <option value="gpt-5.4-nano" selected>GPT-5.4 nano</option>
+              <option value="gpt-5-nano">GPT-5 nano</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="api-key-panel">
+        <label for="apiKey">OpenAI API key</label>
+        <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" data-1p-ignore="true" />
+      </section>
+
+      <section id="runningIndicator" class="running-banner hidden" hidden>running...</section>
+
+      <section class="workspace-grid">
+        <article class="panel controls-panel">
+          <div class="panel-header">
+            <h2>Risk Input</h2>
+            <button id="analyzeBtn" class="primary-button" type="button">Analyze Video</button>
+          </div>
+          <label class="field-label" for="riskDescription">Risk description</label>
+          <textarea id="riskDescription" rows="3">be aware of choking hazard</textarea>
+
+          <div id="objectCountRow" class="slider-row">
+            <label for="objectCount">Objects to extract</label>
+            <input id="objectCount" type="range" min="2" max="20" value="10" />
+            <output id="objectCountValue">10</output>
+          </div>
+
+          <div id="fastCandidatesRow" class="fast-candidates hidden" hidden>
+            <label class="field-label" for="fastObjectCandidates">Candidate objects</label>
+            <textarea id="fastObjectCandidates" rows="3">baby, coin, sofa, table, TV</textarea>
+          </div>
+
+          <div class="option-grid">
+            <label class="switch-row" for="fastMode">
+              <span>
+                <strong>Fast version</strong>
+                <small>Names and scores only</small>
+              </span>
+              <span class="switch-control">
+                <input id="fastMode" type="checkbox" checked />
+                <span class="switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+
+            <label class="switch-row" for="showFrameDetails">
+              <span>
+                <strong>Frame details</strong>
+                <small>Show sampled risk list</small>
+              </span>
+              <span class="switch-control">
+                <input id="showFrameDetails" type="checkbox" checked />
+                <span class="switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </div>
+
+          <div id="thresholdRow" class="slider-row">
+            <label for="riskThreshold">Risk threshold</label>
+            <input id="riskThreshold" type="range" min="0" max="1" step="0.05" value="0.5" />
+            <output id="riskThresholdValue">0.50</output>
+          </div>
+
+          <div id="status" class="status">Ready for an MP4 upload.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Scene Video</h2>
+          </div>
+          <label class="upload-zone video-upload-zone" for="videoInput">
+            <video id="previewVideo" src="assets/baby.MP4" controls muted playsinline></video>
+            <span>Upload MP4</span>
+          </label>
+          <input id="videoInput" type="file" accept="video/mp4" />
+          <p class="image-note">Frames are sampled once per second for analysis.</p>
+        </article>
+      </section>
+
+      <section id="outputStage" class="results-grid hidden" hidden>
+        <article class="panel final-image-panel">
+          <div class="panel-header">
+            <h2>Video With Risk Banner</h2>
+            <a id="downloadLink" class="secondary-button hidden" hidden download>Download</a>
+          </div>
+          <video id="annotatedVideo" controls playsinline></video>
+        </article>
+
+        <article id="framePanel" class="panel risk-panel">
+          <div class="panel-header">
+            <h2>Sampled Frames</h2>
+            <div id="overallScore" class="overall-score">Overall risk: 0%</div>
+          </div>
+          <div id="framesView" class="score-grid"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="js/video.js" type="module"></script>
+  </body>
+</html>

@@ -33,6 +33,13 @@ input {
   font: inherit;
 }
 
+a.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .app-shell {
   width: min(1440px, calc(100vw - 40px));
   margin: 0 auto;
@@ -52,6 +59,30 @@ input {
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 22px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-link {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--blue);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 760;
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
 }
 
 .eyebrow {
@@ -489,6 +520,25 @@ input:focus {
   background: #f8fafc;
 }
 
+.video-upload-zone video,
+.final-image-panel video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  background: #0f172a;
+  object-fit: contain;
+}
+
+.video-upload-zone video {
+  height: clamp(280px, 34vw, 470px);
+}
+
+.final-image-panel video {
+  max-height: 720px;
+  border: 1px solid var(--line);
+}
+
 .upload-zone span {
   position: absolute;
   right: 12px;
@@ -508,6 +558,14 @@ input:focus {
 }
 
 #imageInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#videoInput {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -803,6 +861,11 @@ input:focus {
   .topbar {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    justify-content: flex-start;
   }
 }
 
